@@ -2,7 +2,7 @@
 import time
 import logging
 from common.ultrasonicSensor import UltrasonicSensor
-from common.lightSensor import InfraredSensor
+from common.lightSensor import LightSensor
 from common.irSensor import InfraredSensor
 from common.relaySensor import RelayModule
 from common.imageSensor import ImageCV
@@ -17,7 +17,7 @@ class Sensor:
         # 초음파 센서, 조도 센서, 적외선 센서, 릴레이 모듈 객체 생성
         try:
             self.__ultrasonic_sensor = UltrasonicSensor(trig_pin=23, echo_pin=24)
-            self.__light_sensor = InfraredSensor(sensor_pin=25)
+            self.__light_sensor = LightSensor(sensor_pin=25)
             self.__ir_sensor = InfraredSensor(ir_pin=22)  # 실제 핀 번호로 변경
             self.__relay_module = RelayModule(relay_pin=18)
             self.__photo_sensor = ImageCV()  # 웹캠 객체 생성
