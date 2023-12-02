@@ -118,31 +118,31 @@ class ServerComm :
 
     # 포토 공정 시작 시간 전송
     def photoStart( self ):
-        self.__checkProcess( 1, "start", "photo", "0")
+        return self.__checkProcess( 1, "start", "photo", "0")
     # 포토 공정 종료 타이밍과 센서값 전송
     def photoEnd( self, processValue):
-        self.__checkProcess( 1, "end", "photo", processValue)
+        return self.__checkProcess( 1, "end", "photo", processValue)
     
     # 식각 공정 시작
     def etchingStart( self ):
-        self.__checkProcess( 2, "start", "etching", "0")
+        return self.__checkProcess( 2, "start", "etching", "0")
     # 식각 공정 종료 
     def etchingEnd( self, processValue):
-        self.__checkProcess( 2, "end", "etching", processValue)
+        return self.__checkProcess( 2, "end", "etching", processValue)
 
     # 이온 주입 공정 시작 
     def ionlmplantationStart( self ):
-        self.__checkProcess( 3, "start", "ionlmplantation", "0")
+        return self.__checkProcess( 3, "start", "ionlmplantation", "0")
     # 이온 주입 공정 종료
     def ionlmplantationEnd( self, processValue):
-        self.__checkProcess( 3, "end", "ionlmplantation", processValue)
+        return self.__checkProcess( 3, "end", "ionlmplantation", processValue)
 
     # 후공정 시작 
     def metalWiringStart( self ):
-        self.__checkProcess( 4, "start", "metalWiring", "0")
+        return self.__checkProcess( 4, "start", "metalWiring", "0")
     # 후공정 종료
     def metalWiringEnd( self, processValue):
-        self.__checkProcess( 4, "end", "metalWiring", processValue) 
+        return self.__checkProcess( 4, "end", "metalWiring", processValue) 
     
 
     # 1~4 차 제조 공정 후 불량품 구분을 위한 센서값 전송 (Post)
