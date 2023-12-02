@@ -3,8 +3,8 @@ import http.client
 import json
 
 #적외선 센서와 2차 센서 역할이 다름으로 모델 추가 및 변경
-from common.models import SensorModel
-from common.models import ProcessModel
+from model import SensorModel
+from model import ProcessModel
 
 # 클래스의 메서드에서 첫 번째 매개변수로 self를 사용하는 것은 파이썬의 규칙 중 하나입니다. 
 # self를 사용하여 클래스의 인스턴스 변수 및 메서드에 접근할 수 있다.
@@ -15,7 +15,7 @@ class ServerComm :
     
     #__init__ 설정 메서드에 서버 ip주소 및 포트번호 설정
     def __init__( self ) :
-        self.conn = http.client.HTTPConnection( '192.168.1.12', 5000 ) # 서버 ip, 포트
+        self.conn = http.client.HTTPConnection( '192.168.41.238', 5000 ) # 서버 ip, 포트
         self.conn.timeout = 3
 
     # HTTP 통신 Sensor Post 정의
@@ -31,6 +31,8 @@ class ServerComm :
         # json 안 답변 분리 후 변수 저장 가능
         msg = json_object[ 'msg' ] 
         statusCode = json_object[ 'statusCode' ]   
+
+        print("Server response:", msg)  # 받은 응답 출력
 
         return msg 
 
@@ -107,7 +109,11 @@ class ServerComm :
         
         # 적외선 센서는 한가지 종류만 있어 "detect" 로 고정
         s.sensorName = "detect"
-        s.sensorState = on_off
+        # 서버에서 on과 off에 따라 로직이 달라짐
+        if(on_off == 1):
+            s.sensorState = "on"
+        else:
+            s.sensorState = "off"
 
         res = self.sensorRequestPost( f'/pi/sensor/{idx}', s )
 
