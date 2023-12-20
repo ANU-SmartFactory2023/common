@@ -21,7 +21,7 @@ class ImageCV:
         blurred_image = cv2.GaussianBlur(gray_image, (5, 5), 0)
 
         # 이진화를 위한 임계값 설정 (여기서는 40을 기준으로 이진화)
-        _, binary_image = cv2.threshold(blurred_image, 40, 255, cv2.THRESH_BINARY)
+        _, binary_image = cv2.threshold(blurred_image, 190, 255, cv2.THRESH_BINARY)
 
         # 검은색 픽셀 수 계산
         black_pixel_count = np.sum(binary_image == 0)
